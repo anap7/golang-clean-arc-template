@@ -20,7 +20,7 @@ func TestProcessTransactionValidWhenItsValid(t *testing.T) {
 		ErrorMessage: "",
 	}
 
-	repository := repository.TransactionRepository()
+	//repository := repository.TransactionRepository()
 
 	usecase := NewProcessTransaction()
 	output, err := usecase.Execute(input)

@@ -7,6 +7,9 @@ import (
 	"io/fs"
 	"log"
 	"github.com/maragudk/migrate"
+
+	//mysql driver
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func Up(migrationsDir fs.FS) *sql.DB {

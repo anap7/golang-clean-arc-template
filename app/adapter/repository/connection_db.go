@@ -4,6 +4,9 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+
+	//mysql driver
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func OpenConnection() (*sql.DB, error) {

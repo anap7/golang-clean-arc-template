@@ -25,11 +25,10 @@ func (p *ProcessTransaction) Execute(input TransactionDtoInput) (TransactionDtoO
 	if invalidTransaction != nil {
 		return p.rejectTransaction(transaction, invalidTransaction)
 	}
-
-	return p.approveTransaction(transaction, invalidTransaction)
+	return p.approveTransaction(transaction)
 }
 
-func (p *ProcessTransaction) approveTransaction(transaction *entity.Transaction, invalidTransaction error) (TransactionDtoOutput, error) {
+func (p *ProcessTransaction) approveTransaction(transaction *entity.Transaction) (TransactionDtoOutput, error) {
 	err := p.Repository.Insert(transaction.ID, transaction.AccountID, transaction.Amount, "approved", "")
 	if err != nil {
 		return TransactionDtoOutput{}, err
@@ -38,7 +37,7 @@ func (p *ProcessTransaction) approveTransaction(transaction *entity.Transaction,
 	output := TransactionDtoOutput{
 		ID:           transaction.ID,
 		Status:       "approved",
-		ErrorMessage: invalidTransaction.Error(),
+		ErrorMessage: "",
 	}
 
 	return output, nil
